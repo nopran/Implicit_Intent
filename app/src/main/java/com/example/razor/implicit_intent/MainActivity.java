@@ -83,6 +83,7 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intentphone);
         }
 */
+
     }
 
     public void sendsms(View view) {
