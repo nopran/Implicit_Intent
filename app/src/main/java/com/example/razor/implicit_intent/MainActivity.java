@@ -13,9 +13,9 @@ import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity {
     private EditText mWebsiteEditText;
-    private EditText mlocationEditText;
     private EditText mshareEditText;
     private EditText mcallEditText;
+    private EditText msmsEditText;
 
 
     @Override
@@ -23,17 +23,17 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mWebsiteEditText = (EditText) findViewById(R.id.edtbrowser);
-        mlocationEditText = (EditText) findViewById(R.id.edtloc);
         mshareEditText = (EditText) findViewById(R.id.edttextshare);
         mcallEditText = (EditText) findViewById(R.id.edtphone);
+        msmsEditText = (EditText) findViewById(R.id.edtsms);
     }
 
-    public void openwebsite(View view){
+    public void openwebsite(View view) {
         // Get the URL text.
         String url = mWebsiteEditText.getText().toString();
 
         // Parse the URI and create the intent.
-        Uri webpage =  Uri.parse(url);
+        Uri webpage = Uri.parse(url);
         Intent intent = new Intent(Intent.ACTION_VIEW, webpage);
 
         // Find an activity to hand the intent and start that activity.
@@ -45,25 +45,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void openlocation(View view){
-        // Get the URL text.
-        String loc = mlocationEditText.getText().toString();
-
-        // Parse the URI and create the intent.
-
-
-        Uri addressUri = Uri.parse("geo:0,0?q="+loc);
-        Intent intent = new Intent(Intent.ACTION_VIEW, addressUri);
-        // Find an activity to hand the intent and start that activity.
-        if (intent.resolveActivity(getPackageManager()) != null) {
-            startActivity(intent);
-        } else {
-            Log.d("ImplicitIntents", "Can't handle this intent!");
-        }
-
-    }
-
-    public void texhshare(View view){
+    public void texhshare(View view) {
         String txt = mshareEditText.getText().toString();
         ShareCompat.IntentBuilder
                 .from(this)
@@ -73,18 +55,30 @@ public class MainActivity extends AppCompatActivity {
                 .startChooser();
     }
 
-    public void phonecall(View view){
-
+    public void phonecall(View view) {
         String nomortelp = String.format("tel: %s", mcallEditText.getText().toString());
         Intent dialIntent = new Intent(Intent.ACTION_DIAL);
-        // Set the data for the intent as the phone number.
         dialIntent.setData(Uri.parse(nomortelp));
-        if (dialIntent.resolveActivity(getPackageManager()) !=null){
+        if (dialIntent.resolveActivity(getPackageManager()) != null) {
             startActivity(dialIntent);
-        }else {
+        } else {
             Log.d("phonecall:", "cannot call this number");
         }
 
     }
+
+    public void sendsms(View view) {
+        String smsNumber = String.format("smsto: %s", mcallEditText.getText().toString());
+        String sms = msmsEditText.getText().toString();
+        Intent smsIntent = new Intent(Intent.ACTION_SENDTO);
+        smsIntent.setData(Uri.parse(smsNumber));
+        smsIntent.putExtra("sms_body", sms);
+        if (smsIntent.resolveActivity(getPackageManager()) != null) {
+            startActivity(smsIntent);
+        } else {
+            Log.d("SMS:", "Can't resolve app for ACTION_SENDTO Intent.");
+        }
+    }
+
 
 }

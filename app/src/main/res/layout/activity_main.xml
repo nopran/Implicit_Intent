@@ -8,53 +8,63 @@
     android:weightSum="1"
     tools:context="com.example.razor.implicit_intent.MainActivity">
 
-    <EditText
-        android:id="@+id/edtbrowser"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content">
 
-    <Button
-        android:id="@+id/btnbrowser"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="openwebsite"
-        android:text="Open Browser" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/edtloc"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+            <EditText
+                android:id="@+id/edtbrowser"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
-    <Button
-        android:id="@+id/btnloc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="openlocation"
-        android:text="Open Location" />
+            <Button
+                android:id="@+id/btnbrowser"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="openwebsite"
+                android:text="Open Browser" />
 
-    <EditText
-        android:id="@+id/edttextshare"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+            <EditText
+                android:id="@+id/edttextshare"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
-    <Button
-        android:id="@+id/btnshare"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="texhshare"
-        android:text="Share This Text" />
+            <Button
+                android:id="@+id/btnshare"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="texhshare"
+                android:text="Share This Text" />
 
-    <EditText
-        android:id="@+id/edtphone"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+            <EditText
+                android:id="@+id/edtphone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
-    <Button
-        android:id="@+id/btnphone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="phonecall"
-        android:text="Call" />
+            <Button
+                android:id="@+id/btnphone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="phonecall"
+                android:text="Call" />
 
+            <EditText
+                android:id="@+id/edtsms"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
+            <Button
+                android:id="@+id/btnsms"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="sendsms"
+                android:text="Send SMS" />
+
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>
