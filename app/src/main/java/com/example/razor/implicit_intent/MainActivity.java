@@ -75,12 +75,12 @@ public class MainActivity extends AppCompatActivity {
 
     public void phonecall(View view){
 
-        String nomortelp = mcallEditText.getText().toString();
-        Uri call = Uri.parse(nomortelp);
-        Intent intent = new Intent(Intent.ACTION_DIAL, call);
-
-        if (intent.resolveActivity(getPackageManager()) !=null){
-            startActivity(intent);
+        String nomortelp = String.format("tel: %s", mcallEditText.getText().toString());
+        Intent dialIntent = new Intent(Intent.ACTION_DIAL);
+        // Set the data for the intent as the phone number.
+        dialIntent.setData(Uri.parse(nomortelp));
+        if (dialIntent.resolveActivity(getPackageManager()) !=null){
+            startActivity(dialIntent);
         }else {
             Log.d("phonecall:", "cannot call this number");
         }
